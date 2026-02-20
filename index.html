@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Kitronix - Advanced Flight Controller</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="styles.css" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <div class="header-container">
+        <div style="display: flex; align-items: center; gap: 2rem;">
+            <a class="logo" href="#" style="display: flex; align-items: center; gap: 0.5rem;">
+                <img src="assets/Kitronix.jpeg" alt="Kitronix Logo" style="height: 40px; width: auto; object-fit: contain;">
+            </a>
+            <nav>
+                <a href="#overview">Overview</a>
+                <a href="#features">Features</a>
+                <a href="#specs">Specifications</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#support">Support</a>
+                <a href="product.html">Purchase</a>
+            </nav>
+        </div>
+        <a href="product.html" class="btn-primary">BUY NOW</a>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-container">
+        <div class="hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="pulse-dot"></span>
+                    <span>Next Generation Flight Controller</span>
+                </div>
+                <div>
+                    <h1 class="hero-title">Kitronix</h1>
+                    <p class="hero-description">
+                        Professional-grade autopilot system with advanced triple-redundancy architecture and industrial-grade sensors for mission-critical operations.
+                    </p>
+                </div>
+                <div class="hero-buttons">
+                    <a href="product.html" class="btn-primary" style="padding: 1rem 2rem;">
+                        BUY NOW
+                        <span class="material-symbols-outlined" style="margin-left: 0.5rem; font-size: 20px;">shopping_cart</span>
+                    </a>
+                    <a href="#specs" class="btn-secondary">
+                        VIEW SPECIFICATIONS
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <p>Processor</p>
+                        <p>STM32H7</p>
+                    </div>
+                    <div class="hero-stat">
+                        <p>IMU Units</p>
+                        <p>Triple</p>
+                    </div>
+                    <div class="hero-stat">
+                        <p>Frequency</p>
+                        <p>480 MHz</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-glow" style="position: absolute; inset: 0;"></div>
+                <div class="hero-image-wrapper tech-grid-bg">
+                    <img alt="Kitronix Flight Controller" src="assets/Pd_img1.jpeg"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Dark Section 1: ADIS16470 IMU -->
+<section class="dark-section">
+    <div class="dark-section-container">
+        <div>
+            <h2>ADIS16470 IMU</h2>
+            <p>
+                The Kitronix intelligent controller adopts the high-end ADIS16470 chip, which is commonly used in cutting-edge aerospace projects due to its exceptional gyroscope and acceleration drift performance. This time, we have integrated it into the open-source intelligent controller. After meticulous fine-tuning, it significantly enhances the sensor performance of the intelligent controller for superior operational capabilities.
+            </p>
+        </div>
+        <div class="feature-image">
+            <img alt="ADIS16470 IMU Sensor" src="assets/Pd_img2.jpeg" style="max-width: 500px; margin: 0 auto; display: block;"/>
+        </div>
+    </div>
+</section>
+
+<!-- Dark Section 2: H7 Processor -->
+<section class="dark-section">
+    <div class="dark-section-container">
+        <div class="feature-image">
+            <img alt="STM32H7 Processor" src="assets/Pd_img3.jpeg" style="max-width: 500px; margin: 0 auto; display: block;"/>
+            <div class="stat-badges">
+                <div class="stat-badge cyan">
+                    <div class="stat-value">M7</div>
+                </div>
+                <div class="stat-badge cyan">
+                    <div class="stat-value">480</div>
+                    <div class="stat-label">MHz</div>
+                </div>
+                <div class="stat-badge cyan">
+                    <div class="stat-value">2MB</div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2>H7 Processor Powerful Performance</h2>
+            <p>
+                Kitronix autopilot uses STM32H743 series processors CPU, Cortex-M7 core (with double precision Floating-Point Unit). It makes operating frequency increase to 480Mhz, 2MB Flash, 1MB RAM. Meet the higher computing needs of flight controllers. Compared with the STM32F7 product line, the dynamic power consumption efficiency is doubled.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Dark Section 3: Advanced Sensors -->
+<section class="dark-section">
+    <div class="dark-section-container">
+        <div>
+            <h2>The Sensor is Upgraded Again</h2>
+            <p>
+                The sensor is one of the important indicators to evaluate the Autopilot. This time, we have added the ICM-42688-P sensor. Compared with the traditional consumer IMU, the noise figure of ICM-42688-P is reduced by 40%, and the temperature stability is improved 2 times, so as to ensure the highest accuracy measurement in the case of temperature changes.
+            </p>
+            <div class="stat-badges" style="margin-top: 2rem;">
+                <div class="stat-badge cyan">
+                    <div class="stat-label">Noise figure</div>
+                    <div class="stat-value">40<span style="font-size: 1.5rem;">%</span></div>
+                </div>
+                <div class="stat-badge cyan">
+                    <div class="stat-label">Double temperature</div>
+                    <div class="stat-value">2<span style="font-size: 1.5rem;">x</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="feature-image">
+            <img alt="ICM-42688-P Sensor" src="assets/Pd_img1.jpeg" style="max-width: 500px; margin: 0 auto; display: block;"/>
+        </div>
+    </div>
+</section>
+
+<!-- Overview Section -->
+<section id="overview" class="light-section">
+    <div class="section-container">
+        <div class="section-title">
+            <h2>Product Overview</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <p style="font-size: 1.125rem; line-height: 1.8; color: rgba(26, 26, 26, 0.8);">
+                    The Kitronix represents the pinnacle of flight controller technology, engineered for professional UAV applications demanding the highest levels of reliability and performance.
+                </p>
+                <p style="color: rgba(26, 26, 26, 0.8); line-height: 1.6;">
+                    Featuring triple-redundant IMU architecture, industrial-grade components, and an advanced STM32H7 processor, the Kitronix ensures mission success even in the most demanding environments.
+                </p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding-top: 1.5rem;">
+                    <div style="background-color: white; padding: 1.5rem; border: 1px solid var(--tech-border);">
+                        <div style="color: var(--primary); margin-bottom: 0.5rem;">
+                            <span class="material-symbols-outlined" style="font-size: 2.5rem;">verified</span>
+                        </div>
+                        <h4 style="font-weight: 700; color: var(--text-charcoal); margin-bottom: 0.25rem;">Certified Quality</h4>
+                        <p style="font-size: 0.875rem; color: rgba(26, 26, 26, 0.6);">ISO 9001 Manufacturing</p>
+                    </div>
+                    <div style="background-color: white; padding: 1.5rem; border: 1px solid var(--tech-border);">
+                        <div style="color: var(--primary); margin-bottom: 0.5rem;">
+                            <span class="material-symbols-outlined" style="font-size: 2.5rem;">support_agent</span>
+                        </div>
+                        <h4 style="font-weight: 700; color: var(--text-charcoal); margin-bottom: 0.25rem;">24/7 Support</h4>
+                        <p style="font-size: 0.875rem; color: rgba(26, 26, 26, 0.6);">Expert Technical Team</p>
+                    </div>
+                </div>
+            </div>
+            <div style="position: relative;">
+                <div style="background-color: white; padding: 1.5rem; border: 1px solid var(--tech-border);">
+                    <img alt="X7 Plus Pro Detail View" src="assets/Pd_img2.jpeg" style="width: 100%; height: auto; object-fit: cover;"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="light-section" style="border-top: 1px solid var(--tech-border); border-bottom: 1px solid var(--tech-border); background-color: white;">
+    <div class="section-container">
+        <div class="section-title">
+            <h2>Key Features</h2>
+            <div class="section-divider"></div>
+            <p class="section-description">
+                Engineered with cutting-edge technology to deliver unmatched performance and reliability
+            </p>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <span class="material-symbols-outlined" style="font-size: 3rem;">memory</span>
+                </div>
+                <h3>Triple Redundancy</h3>
+                <p>Three independent IMU sensor sets provide unparalleled safety and fault tolerance for critical missions.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <span class="material-symbols-outlined" style="font-size: 3rem;">thermostat</span>
+                </div>
+                <h3>Heated Sensors</h3>
+                <p>Integrated sensor heating maintains optimal performance across extreme temperature ranges.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <span class="material-symbols-outlined" style="font-size: 3rem;">speed</span>
+                </div>
+                <h3>480MHz Processor</h3>
+                <p>STM32H753 dual-core ARM processor delivers exceptional computational power for complex algorithms.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <span class="material-symbols-outlined" style="font-size: 3rem;">sensors</span>
+                </div>
+                <h3>Advanced Sensors</h3>
+                <p>Industrial-grade barometer, magnetometer, and GPS modules ensure precise positioning.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <span class="material-symbols-outlined" style="font-size: 3rem;">cable</span>
+                </div>
+                <h3>Rich Connectivity</h3>
+                <p>Multiple UART, I2C, SPI, and CAN ports for extensive peripheral integration options.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <span class="material-symbols-outlined" style="font-size: 3rem;">shield</span>
+                </div>
+                <h3>Vibration Isolated</h3>
+                <p>Advanced vibration dampening ensures clean sensor data in high-vibration environments.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Technical Specifications Section -->
+<section id="specs" class="light-section">
+    <div class="section-container">
+        <div class="section-title">
+            <h2>Technical Specifications</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="specs-grid">
+            <div class="spec-card">
+                <h3>Processor & Memory</h3>
+                <div>
+                    <div class="spec-item">
+                        <span class="spec-label">Main Processor</span>
+                        <span class="spec-value">STM32H753</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Architecture</span>
+                        <span class="spec-value">ARM Cortex-M7</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Clock Speed</span>
+                        <span class="spec-value">480 MHz</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">RAM</span>
+                        <span class="spec-value">1 MB</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Flash Storage</span>
+                        <span class="spec-value">2 MB</span>
+                    </div>
+                </div>
+            </div>
+            <div class="spec-card">
+                <h3>Sensors</h3>
+                <div>
+                    <div class="spec-item">
+                        <span class="spec-label">IMU Redundancy</span>
+                        <span class="spec-value">Triple (3x)</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Gyroscope</span>
+                        <span class="spec-value">BMI088 x3</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Accelerometer</span>
+                        <span class="spec-value">BMI088 x3</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Barometer</span>
+                        <span class="spec-value">MS5611 x2</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Magnetometer</span>
+                        <span class="spec-value">IST8310</span>
+                    </div>
+                </div>
+            </div>
+            <div class="spec-card">
+                <h3>Interfaces</h3>
+                <div>
+                    <div class="spec-item">
+                        <span class="spec-label">UART Ports</span>
+                        <span class="spec-value">7</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">I2C Ports</span>
+                        <span class="spec-value">4</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">CAN Ports</span>
+                        <span class="spec-value">2</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">SPI Ports</span>
+                        <span class="spec-value">1</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">PWM Outputs</span>
+                        <span class="spec-value">14</span>
+                    </div>
+                </div>
+            </div>
+            <div class="spec-card">
+                <h3>Power & Physical</h3>
+                <div>
+                    <div class="spec-item">
+                        <span class="spec-label">Input Voltage</span>
+                        <span class="spec-value">4.3V - 5.5V</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Power Consumption</span>
+                        <span class="spec-value">~5W</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Dimensions</span>
+                        <span class="spec-value">92 x 54 x 24mm</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Weight</span>
+                        <span class="spec-value">95g</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Operating Temp</span>
+                        <span class="spec-value">-40°C to 85°C</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery Section -->
+<section id="gallery" class="light-section" style="background-color: white; border-top: 1px solid var(--tech-border);">
+    <div class="section-container">
+        <div class="section-title">
+            <h2>Product Gallery</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img alt="Kitronix - View 1" src="assets/Pd_img1.jpeg"/>
+            </div>
+            <div class="gallery-item">
+                <img alt="Kitronix - View 2" src="assets/Pd_img2.jpeg"/>
+            </div>
+            <div class="gallery-item">
+                <img alt="Kitronix - View 3" src="assets/Pd_img3.jpeg"/>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Support & Download Section -->
+<section id="support" class="light-section">
+    <div class="section-container">
+        <div class="section-title">
+            <h2>Support & Resources</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="support-grid">
+            <div class="support-card">
+                <div class="support-icon">
+                    <span class="material-symbols-outlined" style="font-size: 4rem;">description</span>
+                </div>
+                <h3>User Manual</h3>
+                <p>Complete installation and operation guide</p>
+                <a href="#" class="support-link">
+                    Download PDF
+                    <span class="material-symbols-outlined">download</span>
+                </a>
+            </div>
+            <div class="support-card">
+                <div class="support-icon">
+                    <span class="material-symbols-outlined" style="font-size: 4rem;">code</span>
+                </div>
+                <h3>Firmware</h3>
+                <p>Latest firmware updates and releases</p>
+                <a href="#" class="support-link">
+                    Download
+                    <span class="material-symbols-outlined">download</span>
+                </a>
+            </div>
+            <div class="support-card">
+                <div class="support-icon">
+                    <span class="material-symbols-outlined" style="font-size: 4rem;">forum</span>
+                </div>
+                <h3>Community</h3>
+                <p>Join our technical support forum</p>
+                <a href="#" class="support-link">
+                    Visit Forum
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="light-section" style="background-color: white; border-top: 1px solid var(--tech-border);">
+    <div class="section-container" style="max-width: 900px;">
+        <div class="section-title">
+            <h2>Contact Us</h2>
+            <div class="section-divider"></div>
+            <p class="section-description">
+                Interested in the X7 Plus Pro? Get in touch with our sales team or <a href="product.html" style="color: var(--primary); font-weight: 700; text-decoration: none; border-bottom: 2px solid var(--primary);">purchase now</a>
+            </p>
+        </div>
+        <div class="contact-form">
+            <form style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;" class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label" for="name">Name</label>
+                        <input class="form-input" id="name" placeholder="Your name" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email</label>
+                        <input class="form-input" id="email" placeholder="your@email.com" type="email"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="company">Company</label>
+                    <input class="form-input" id="company" placeholder="Your company" type="text"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="message">Message</label>
+                    <textarea class="form-textarea" id="message" placeholder="Tell us about your project..."></textarea>
+                </div>
+                <button class="btn-submit" type="submit">
+                    SEND MESSAGE
+                    <span class="material-symbols-outlined">send</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-container">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <a class="logo" href="#" style="margin-bottom: 1rem;">
+                    <span class="material-symbols-outlined" style="color: var(--primary); font-size: 24px;">rocket_launch</span>
+                    <span style="font-size: 1.125rem; font-weight: 700; color: var(--text-charcoal);">X7 PLUS <span style="color: var(--primary);">PRO</span></span>
+                </a>
+                <p style="font-size: 0.875rem; color: rgba(26, 26, 26, 0.6); line-height: 1.6;">
+                    Professional-grade flight control systems for mission-critical applications.
+                </p>
+                <div class="social-links">
+                    <a href="#" aria-label="GitHub">
+                        <span class="material-symbols-outlined">hub</span>
+                    </a>
+                    <a href="#" aria-label="Documentation">
+                        <span class="material-symbols-outlined">description</span>
+                    </a>
+                    <a href="#" aria-label="Community">
+                        <span class="material-symbols-outlined">groups</span>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#specs">Specifications</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="product.html" style="color: var(--primary); font-weight: 700;">Purchase</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#support">Documentation</a></li>
+                    <li><a href="#support">Firmware</a></li>
+                    <li><a href="#support">Community Forum</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Kitronix. All rights reserved.</p>
+            <p>Designed for Professional UAV Applications</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

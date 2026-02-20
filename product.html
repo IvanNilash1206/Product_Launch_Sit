@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitronix - Purchase | Advanced Flight Controller</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <style>
+        .breadcrumb {
+            display: flex;
+            gap: 8px;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 32px;
+        }
+        .breadcrumb a {
+            color: var(--text-dark);
+            opacity: 0.5;
+            transition: opacity 0.3s;
+        }
+        .breadcrumb a:hover {
+            opacity: 1;
+            color: var(--primary);
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .product-images {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .main-image {
+            width: 100%;
+            aspect-ratio: 1;
+            overflow: hidden;
+            background: var(--bg-main);
+            border: 3px solid var(--tech-border);
+            position: relative;
+            transition: all 0.4s ease;
+        }
+        .main-image:hover {
+            border-color: var(--primary);
+            box-shadow: 0 10px 40px rgba(229, 222, 0, 0.2);
+        }
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .main-image:hover img {
+            transform: scale(1.08);
+        }
+        .badge-container {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            display: flex;
+            gap: 8px;
+        }
+        .badge {
+            background: var(--accent-yellow);
+            color: var(--dark-bg);
+            padding: 6px 12px;
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            animation: badge-slide-in 0.6s ease-out;
+            box-shadow: 0 2px 8px rgba(229, 222, 0, 0.4);
+        }
+        @keyframes badge-slide-in {
+            from {
+                transform: translateX(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        .badge.stock {
+            background: var(--dark-bg);
+            color: var(--accent-yellow);
+            animation-delay: 0.2s;
+            border: 2px solid var(--accent-yellow);
+        }
+        .thumbnail-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+        }
+        .thumbnail {
+            aspect-ratio: 1;
+            border: 2px solid var(--tech-border);
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        .thumbnail::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(229, 222, 0, 0.3));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .thumbnail:hover::before {
+            opacity: 1;
+        }
+        .thumbnail:hover, .thumbnail.active {
+            border-color: var(--primary);
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(229, 222, 0, 0.3);
+        }
+        .thumbnail.active {
+            border-width: 3px;
+        }
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+        .thumbnail:hover img {
+            transform: scale(1.1);
+        }
+        .product-info {
+            position: sticky;
+            top: 100px;
+        }
+        .product-header {
+            border-bottom: 2px solid var(--tech-border);
+            padding-bottom: 24px;
+            margin-bottom: 24px;
+        }
+        .product-tag {
+            color: var(--primary);
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .product-title {
+            font-size: 48px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            color: var(--text-charcoal);
+            margin-bottom: 16px;
+        }
+        .product-description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-dark);
+            border-left: 3px solid var(--tech-border);
+            padding-left: 16px;
+            font-style: italic;
+        }
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .stars {
+            display: flex;
+            gap: 2px;
+            color: var(--accent-yellow);
+        }
+        .stars .material-symbols-outlined {
+            animation: star-twinkle 2s ease-in-out infinite;
+        }
+        .stars .material-symbols-outlined:nth-child(1) { animation-delay: 0s; }
+        .stars .material-symbols-outlined:nth-child(2) { animation-delay: 0.2s; }
+        .stars .material-symbols-outlined:nth-child(3) { animation-delay: 0.4s; }
+        .stars .material-symbols-outlined:nth-child(4) { animation-delay: 0.6s; }
+        .stars .material-symbols-outlined:nth-child(5) { animation-delay: 0.8s; }
+        @keyframes star-twinkle {
+            0%, 100% { filter: brightness(1); transform: scale(1); }
+            50% { filter: brightness(1.3); transform: scale(1.1); }
+        }
+        .review-count {
+            font-size: 10px;
+            color: var(--text-dark);
+            opacity: 0.6;
+        }
+        .price-section {
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .current-price {
+            font-size: 56px;
+            font-weight: 900;
+            color: var(--text-charcoal);
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: price-pulse 3s ease-in-out infinite;
+        }
+        @keyframes price-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .original-price {
+            font-size: 24px;
+            color: #ccc;
+            text-decoration: line-through;
+        }
+        .options-section {
+            margin-bottom: 32px;
+        }
+        .option-label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 12px;
+            color: var(--text-charcoal);
+        }
+        .option-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .option-btn {
+            padding: 16px;
+            border: 2px solid var(--tech-border);
+            background: var(--surface-light);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .option-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(229, 222, 0, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        .option-btn:hover::before {
+            left: 100%;
+        }
+        .option-btn:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(229, 222, 0, 0.2);
+        }
+        .option-btn.selected {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, rgba(229, 222, 0, 0.08) 0%, rgba(240, 232, 77, 0.12) 100%);
+            box-shadow: 0 0 0 1px var(--primary), inset 0 0 20px rgba(229, 222, 0, 0.1);
+            transform: scale(1.02);
+        }
+        .option-size {
+            font-size: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-charcoal);
+        }
+        .option-desc {
+            font-size: 10px;
+            color: var(--text-dark);
+            text-transform: uppercase;
+        }
+        .quantity-cart {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .quantity-selector {
+            display: flex;
+            border: 2px solid var(--tech-border);
+            background: var(--surface-light);
+        }
+        .qty-btn {
+            width: 48px;
+            height: 48px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+        .qty-btn:hover {
+            background: var(--primary-ultra-light);
+            color: var(--primary);
+            transform: scale(1.1);
+        }
+        .qty-btn:active {
+            transform: scale(0.95);
+        }
+        .qty-input {
+            width: 48px;
+            text-align: center;
+            border: none;
+            background: transparent;
+            font-weight: 900;
+            color: var(--text-charcoal);
+        }
+        .add-to-cart {
+            flex: 1;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--surface-light);
+            border: none;
+            padding: 16px 32px;
+            font-size: 14px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        .add-to-cart::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        .add-to-cart:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+        .add-to-cart:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(229, 222, 0, 0.4), 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        .add-to-cart:active {
+            transform: translateY(-1px);
+        }
+        .wishlist-btn {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid var(--tech-border);
+            background: transparent;
+            color: var(--text-dark);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 32px;
+            position: relative;
+        }
+        .wishlist-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transform: translateX(-50%);
+            transition: width 0.4s;
+        }
+        .wishlist-btn:hover::after {
+            width: 90%;
+        }
+        .wishlist-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--primary-ultra-light);
+            transform: translateY(-2px);
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            padding-top: 32px;
+            border-top: 2px solid var(--tech-border);
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            padding: 8px;
+            border-radius: 4px;
+        }
+        .feature-item:hover {
+            background: var(--primary-ultra-light);
+            transform: translateX(5px);
+        }
+        .feature-item .material-symbols-outlined {
+            color: var(--primary);
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        .feature-item:hover .material-symbols-outlined {
+            transform: rotate(360deg) scale(1.2);
+            color: var(--primary-dark);
+        }
+        .specs-section {
+            max-width: 1400px;
+            margin: 80px auto;
+        }
+        .section-title {
+            font-size: 36px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            margin-bottom: 32px;
+            color: var(--text-charcoal);
+        }
+        .specs-table {
+            width: 100%;
+            border: 2px solid var(--tech-border);
+            background: var(--surface-light);
+        }
+        .specs-table tr {
+            border-bottom: 1px solid var(--tech-border);
+            transition: all 0.3s ease;
+        }
+        .specs-table tr:hover {
+            background: var(--primary-ultra-light) !important;
+            transform: translateX(5px);
+        }
+        .specs-table tr:last-child {
+            border-bottom: none;
+        }
+        .specs-table tr:nth-child(even) {
+            background: var(--tech-grey-light);
+        }
+        .specs-table td {
+            padding: 24px;
+            font-size: 13px;
+        }
+        .specs-table td:first-child {
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-charcoal);
+            width: 33%;
+        }
+        .specs-table td:last-child {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+        @media (max-width: 1024px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .product-info {
+                position: static;
+            }
+            .specs-section {
+                margin: 60px auto;
+            }
+        }
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 16px;
+            }
+            nav {
+                display: none;
+            }
+            .product-title {
+                font-size: 24px !important;
+            }
+            .current-price {
+                font-size: 36px !important;
+            }
+            .thumbnail-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+            .main-image {
+                aspect-ratio: 1;
+            }
+            .breadcrumb {
+                font-size: 9px;
+                margin-bottom: 20px;
+            }
+            .quantity-cart {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .quantity-selector {
+                width: 100%;
+                justify-content: center;
+            }
+            .add-to-cart {
+                width: 100%;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .specs-table td {
+                padding: 16px 12px;
+                font-size: 12px;
+            }
+            .specs-table td:first-child {
+                width: 40%;
+            }
+            .section-title {
+                font-size: 28px;
+            }
+            .option-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 480px) {
+            .product-title {
+                font-size: 20px !important;
+            }
+            .current-price {
+                font-size: 32px !important;
+            }
+            .thumbnail-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .rating {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+            main {
+                padding: 20px 16px 60px !important;
+            }
+            .specs-section {
+                margin: 40px auto;
+            }
+            .header-actions {
+                gap: 8px;
+            }
+            .icon-btn {
+                width: 36px;
+                height: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div style="display: flex; align-items: center; gap: 2rem;">
+                <a class="logo" href="index.html" style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none;">
+                    <img src="assets/Kitronix.jpeg" alt="Kitronix Logo" style="height: 40px; width: auto; object-fit: contain;">
+                </a>
+                <nav class="main-nav">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#features">Features</a>
+                    <a href="index.html#specs">Specifications</a>
+                    <a href="index.html#support">Support</a>
+                    <a href="product.html" class="active">Purchase</a>
+                </nav>
+            </div>
+            <div class="header-actions">
+                <button class="icon-btn">
+                    <span class="material-symbols-outlined">search</span>
+                </button>
+                <button class="icon-btn">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main style="padding: 30px 40px 80px;">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span>/</span>
+            <a href="#">Flight Controllers</a>
+            <span>/</span>
+            <span style="opacity: 1;">Kitronix</span>
+        </div>
+
+        <div class="product-grid">
+            <div class="product-images">
+                <div class="main-image">
+                    <span class="material-symbols-outlined" style="position: absolute; top: 20px; right: 20px; font-size: 28px; color: var(--text-charcoal); cursor: pointer; z-index: 10; transition: all 0.3s;">search</span>
+                    <img id="mainProductImage" src="assets/Pd_img1.jpeg" alt="Kitronix Flight Controller">
+                </div>
+                <div class="thumbnail-grid">
+                    <div class="thumbnail active" onclick="changeImage('assets/Pd_img1.jpeg', this)">
+                        <img src="assets/Pd_img1.jpeg" alt="View 1">
+                    </div>
+                    <div class="thumbnail" onclick="changeImage('assets/Pd_img2.jpeg', this)">
+                        <img src="assets/Pd_img2.jpeg" alt="View 2">
+                    </div>
+                    <div class="thumbnail" onclick="changeImage('assets/Pd_img3.jpeg', this)">
+                        <img src="assets/Pd_img3.jpeg" alt="View 3">
+                    </div>
+                    <div class="thumbnail" onclick="changeImage('assets/Pd_img1.jpeg', this)">
+                        <img src="assets/Pd_img1.jpeg" alt="View 4">
+                    </div>
+                    <div class="thumbnail" onclick="changeImage('assets/Pd_img2.jpeg', this)">
+                        <img src="assets/Pd_img2.jpeg" alt="View 5">
+                    </div>
+                </div>
+
+                <!-- Key Features Box -->
+                <div style="margin-top: 24px; padding: 20px; background: var(--primary-ultra-light); border: 2px solid var(--primary); border-radius: 4px;">
+                    <h4 style="font-size: 14px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-charcoal); margin-bottom: 12px;">Key Features</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 12px; color: var(--text-dark);">
+                            <span class="material-symbols-outlined" style="font-size: 16px; color: var(--primary);">check_circle</span>
+                            <span>STM32H7 480MHz Processor</span>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 12px; color: var(--text-dark);">
+                            <span class="material-symbols-outlined" style="font-size: 16px; color: var(--primary);">check_circle</span>
+                            <span>Triple-Redundant IMU</span>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 12px; color: var(--text-dark);">
+                            <span class="material-symbols-outlined" style="font-size: 16px; color: var(--primary);">check_circle</span>
+                            <span>Industrial Grade Components</span>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-dark);">
+                            <span class="material-symbols-outlined" style="font-size: 16px; color: var(--primary);">check_circle</span>
+                            <span>-40°C to +85°C Operating Range</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="product-info">
+                <div class="product-header">
+                    <div class="product-tag" style="color: var(--text-dark); opacity: 0.7; margin-bottom: 8px;">Flight Controllers</div>
+                    <h1 class="product-title" style="font-size: 32px; margin-bottom: 12px;">Kitronix Flight Controller for Advanced Drone Navigation System</h1>
+                    
+                    <div class="rating">
+                        <div class="stars">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">star</span>
+                        </div>
+                        <span class="review-count">(2 customer reviews)</span>
+                    </div>
+
+                    <div style="margin: 20px 0; padding: 16px 0; border-bottom: 1px solid var(--tech-border);">
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                            <span style="font-size: 14px; font-weight: 700; color: var(--text-charcoal);">Availability:</span>
+                            <span style="font-size: 14px; font-weight: 700; color: #e74c3c;">In stock</span>
+                        </div>
+                        
+                        <button class="wishlist-btn" style="max-width: 200px; padding: 12px 24px; background: #2c3e50; color: white; border: none; margin-bottom: 20px;">
+                            <span>Add to Wishlist</span>
+                        </button>
+
+                        <div style="margin-bottom: 16px;">
+                            <p style="font-size: 14px; font-weight: 700; color: var(--text-charcoal); margin-bottom: 4px;">Approx Restocking Date: <span style="font-weight: 400;">10th March, 2026</span></p>
+                            <p style="font-size: 14px; color: var(--text-dark);">For bulk orders or B2B inquiries, email us: <a href="mailto:sales@x7flight.com" style="color: #3498db; text-decoration: none; font-weight: 600;">sales@x7flight.com</a></p>
+                        </div>
+                    </div>
+
+                    <div style="margin: 24px 0;">
+                        <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 16px; color: var(--text-charcoal);">SKU: 31387</h3>
+                        <ul style="list-style: decimal; padding-left: 20px; line-height: 2; color: var(--text-dark);">
+                            <li>Type: Advanced autopilot system.</li>
+                            <li>Material: Industrial-grade PCB with gold-plated connectors.</li>
+                            <li>Processor: STM32H7 (480MHz).</li>
+                            <li>Dimensions: 85mm × 50mm × 15mm.</li>
+                            <li>IMU Sensor: ADIS16470 triple-redundancy.</li>
+                            <li>Weight: 42g.</li>
+                        </ul>
+                    </div>
+
+                    <div style="margin: 24px 0; padding: 20px 0; border-top: 1px solid var(--tech-border); border-bottom: 1px solid var(--tech-border);">
+                        <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 12px; color: var(--text-charcoal);">What's Included</h3>
+                        <ul style="list-style: none; padding: 0; line-height: 1.8; color: var(--text-dark); font-size: 14px;">
+                            <li style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                <span class="material-symbols-outlined" style="font-size: 18px; color: var(--primary);">memory</span>
+                                <span>Kitronix main board with pre-installed firmware</span>
+                            </li>
+                            <li style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                <span class="material-symbols-outlined" style="font-size: 18px; color: var(--primary);">cable</span>
+                                <span>JST-GH connectors and power cables</span>
+                            </li>
+                            <li style="display: flex; align-items: center; gap: 8px;">
+                                <span class="material-symbols-outlined" style="font-size: 18px; color: var(--primary);">description</span>
+                                <span>Quick start guide and technical manual</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="price-section" style="margin: 16px 0 0 0; padding: 0;">
+                        <div style="display: flex; align-items: baseline; gap: 8px;">
+                            <span style="font-size: 18px; color: var(--text-charcoal);">₹</span>
+                            <span class="current-price" style="font-size: 48px;">349.99</span>
+                            <span style="font-size: 14px; color: var(--text-dark); opacity: 0.8;">(Incl. GST)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quantity-cart">
+                    <div class="quantity-selector">
+                        <button class="qty-btn">
+                            <span class="material-symbols-outlined">remove</span>
+                        </button>
+                        <input type="text" class="qty-input" value="1" readonly>
+                        <button class="qty-btn">
+                            <span class="material-symbols-outlined">add</span>
+                        </button>
+                    </div>
+                    <button class="add-to-cart">
+                        <span class="material-symbols-outlined">shopping_cart_checkout</span>
+                        Add to Cart
+                    </button>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <span class="material-symbols-outlined">local_shipping</span>
+                        <span>Free Shipping</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="material-symbols-outlined">verified_user</span>
+                        <span>2Y Warranty</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="material-symbols-outlined">sync</span>
+                        <span>30D Returns</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="material-symbols-outlined">support_agent</span>
+                        <span>24/7 Support</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="specs-section">
+            <h2 class="section-title">Technical Specifications</h2>
+            <table class="specs-table">
+                <tbody>
+                    <tr>
+                        <td>Processor</td>
+                        <td>STM32H7 Series (480MHz Triple Core)</td>
+                    </tr>
+                    <tr>
+                        <td>IMU Sensor</td>
+                        <td>ADIS16470 Industrial Grade IMU</td>
+                    </tr>
+                    <tr>
+                        <td>Barometer</td>
+                        <td>DPS310 High Precision Barometer</td>
+                    </tr>
+                    <tr>
+                        <td>Magnetometer</td>
+                        <td>IST8310 3-Axis Compass</td>
+                    </tr>
+                    <tr>
+                        <td>Input Voltage</td>
+                        <td>4.5V - 5.5V (USB Powered / Dedicated 5V BEC)</td>
+                    </tr>
+                    <tr>
+                        <td>Connectivity</td>
+                        <td>8x UART, 14x PWM, I2C, SPI, CAN Bus</td>
+                    </tr>
+                    <tr>
+                        <td>Storage</td>
+                        <td>256MB Onboard Flash + MicroSD Slot</td>
+                    </tr>
+                    <tr>
+                        <td>Dimensions</td>
+                        <td>85mm × 50mm × 15mm</td>
+                    </tr>
+                    <tr>
+                        <td>Weight</td>
+                        <td>42g (Without Cables)</td>
+                    </tr>
+                    <tr>
+                        <td>Operating Temperature</td>
+                        <td>-40°C to +85°C</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="index.html#features">Features</a></li>
+                        <li><a href="index.html#specs">Specifications</a></li>
+                        <li><a href="#">Downloads</a></li>
+                        <li><a href="#">Documentation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Firmware Updates</a></li>
+                        <li><a href="#">Warranty</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Technology</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Compliance</a></li>
+                        <li><a href="#">Export Control</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Kitronix. All rights reserved.</p>
+                <p>Designed for Professional UAV Applications</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Change main image function
+        function changeImage(imageSrc, element) {
+            document.getElementById('mainProductImage').src = imageSrc;
+            document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        // Quantity controls
+        const qtyBtns = document.querySelectorAll('.qty-btn');
+        const qtyInput = document.querySelector('.qty-input');
+        
+        qtyBtns[0].addEventListener('click', () => {
+            let val = parseInt(qtyInput.value);
+            if (val > 1) qtyInput.value = val - 1;
+        });
+        
+        qtyBtns[1].addEventListener('click', () => {
+            let val = parseInt(qtyInput.value);
+            qtyInput.value = val + 1;
+        });
+
+        // Add to cart
+        document.querySelector('.add-to-cart').addEventListener('click', () => {
+            alert('Product added to cart! (This is a demo)');
+        });
+
+        // Chatbot toggle
+        const chatbotBtn = document.getElementById('chatbotBtn');
+        const chatbotPopup = document.getElementById('chatbotPopup');
+        
+        if (chatbotBtn) {
+            chatbotBtn.addEventListener('click', () => {
+                chatbotPopup.style.display = chatbotPopup.style.display === 'none' ? 'flex' : 'none';
+            });
+        }
+    </script>
+
+    <!-- Chatbot Widget -->
+    <div style="position: fixed; bottom: 30px; right: 30px; z-index: 1000;">
+        <button id="chatbotBtn" style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); border: none; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: all 0.3s; display: flex; align-items: center; justify-content: center; animation: chatbot-bounce 2s infinite;">
+            <div style="width: 50px; height: 50px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative;">
+                <div style="width: 12px; height: 12px; background: #2c3e50; border-radius: 50%; position: absolute; top: 15px; left: 12px;"></div>
+                <div style="width: 12px; height: 12px; background: #2c3e50; border-radius: 50%; position: absolute; top: 15px; right: 12px;"></div>
+                <div style="width: 20px; height: 10px; border: 3px solid #2c3e50; border-top: none; border-radius: 0 0 20px 20px; position: absolute; top: 27px;"></div>
+            </div>
+        </button>
+        <div id="chatbotPopup" style="display: none; position: absolute; bottom: 100px; right: 0; background: white; border-radius: 12px; padding: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); width: 300px; border: 2px solid var(--tech-border);">
+            <p style="font-weight: 700; color: var(--text-charcoal); margin-bottom: 8px;">Hi, How can I help you today?</p>
+            <p style="font-size: 12px; color: var(--text-dark); margin-bottom: 16px;">Have questions about Kitronix? I'm here to assist!</p>
+            <button style="width: 100%; padding: 12px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; border: none; border-radius: 6px; font-weight: 700; cursor: pointer;">Start Chat</button>
+        </div>
+    </div>
+
+    <style>
+        @keyframes chatbot-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        #chatbotBtn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+    </style>
+</body>
+</html>
