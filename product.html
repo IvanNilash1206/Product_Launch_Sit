@@ -601,20 +601,21 @@
     </style>
 </head>
 <body>
+    <!-- Yellow Strip -->
+    <div class="yellow-strip"></div>
+
     <header>
         <div class="header-container">
-            <div style="display: flex; align-items: center; gap: 2rem; flex: 1;">
-                <a class="logo" href="index.html" style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none;">
-                    <img src="assets/Kitronix.png" alt="Kite H7 Logo" style="height: 70px; width: 70px; object-fit: cover; border-radius: 50%; filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));">
-                </a>
-                <nav class="main-nav" id="mainNav">
-                    <a href="index.html">Home</a>
-                    <a href="index.html#features">Features</a>
-                    <a href="index.html#specs">Specifications</a>
-                    <a href="index.html#support">Support</a>
-                    <a href="product.html" class="active">Purchase</a>
-                </nav>
-            </div>
+            <a class="logo" href="index.html" style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none;">
+                <img src="assets/Kitronix.png" alt="Kite H7 Logo" style="height: 70px; width: 70px; object-fit: cover; border-radius: 50%; filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));">
+            </a>
+            <nav class="main-nav" id="mainNav">
+                <a href="index.html">Home</a>
+                <a href="index.html#features">Features</a>
+                <a href="index.html#specs">Specifications</a>
+                <a href="index.html#support">Support</a>
+                <a href="product.html" class="active">Purchase</a>
+            </nav>
             <div class="header-actions">
                 <button class="icon-btn mobile-menu-btn" id="mobileMenuBtn" style="display: none;">
                     <span class="material-symbols-outlined">menu</span>
@@ -910,6 +911,16 @@
             });
         }
 
+        // Close mobile menu when clicking nav links
+        const navLinks = mainNav.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('.material-symbols-outlined');
+                icon.textContent = 'menu';
+            });
+        });
+
         // Quantity controls
         const qtyBtns = document.querySelectorAll('.qty-btn');
         const qtyInput = document.querySelector('.qty-input');
@@ -938,6 +949,39 @@
                 chatbotPopup.style.display = chatbotPopup.style.display === 'none' ? 'flex' : 'none';
             });
         }
+
+        // Mobile navbar scroll behavior
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+
+        function handleScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Show navbar when scrolling up, hide when scrolling down
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Scrolling down
+                header.classList.remove('mobile-visible');
+            } else {
+                // Scrolling up or at top
+                header.classList.add('mobile-visible');
+            }
+
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        }
+
+        // Only apply on mobile/tablet
+        function checkMobile() {
+            if (window.innerWidth <= 1024) {
+                window.addEventListener('scroll', handleScroll);
+                handleScroll(); // Initial check
+            } else {
+                window.removeEventListener('scroll', handleScroll);
+                header.classList.remove('mobile-visible');
+            }
+        }
+
+        window.addEventListener('resize', checkMobile);
+        checkMobile(); // Initial check
     </script>
 
     <!-- Chatbot Widget -->

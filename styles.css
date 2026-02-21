@@ -79,15 +79,34 @@ body {
     50% { opacity: 1; }
 }
 
+/* Yellow Strip */
+.yellow-strip {
+    width: 100%;
+    height: 30px;
+    background-color: #ffe401;
+    position: sticky;
+    top: 0;
+    z-index: 51;
+}
+
 /* Header Styles */
 header {
     position: sticky;
-    top: 0;
+    top: 18px;
     z-index: 50;
     width: 100%;
     border-bottom: 1px solid var(--tech-border);
-    background-color: #ffe401;
+    background-color: white;
     backdrop-filter: blur(12px);
+    transition: transform 0.3s ease-in-out;
+}
+
+header.hidden {
+    transform: translateY(-100%);
+}
+
+header.visible {
+    transform: translateY(0);
 }
 
 .header-container {
@@ -98,6 +117,7 @@ header {
     justify-content: space-between;
     height: 64px;
     padding: 0 1rem;
+    gap: 2rem;
 }
 
 .logo {
@@ -126,6 +146,7 @@ nav {
     display: flex;
     align-items: center;
     gap: 1.5rem;
+    margin-left: auto;
 }
 
 nav a {
@@ -893,6 +914,15 @@ footer {
     nav {
         display: none;
     }
+
+    /* Mobile navbar behavior */
+    header {
+        transform: translateY(-100%);
+    }
+
+    header.mobile-visible {
+        transform: translateY(0);
+    }
 }
 
 @media (max-width: 768px) {
@@ -1177,7 +1207,7 @@ footer {
     nav {
         display: none;
         position: fixed;
-        top: 64px;
+        top: 82px;
         left: 0;
         right: 0;
         background: #ffe401;
@@ -1185,6 +1215,7 @@ footer {
         padding: 20px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         z-index: 100;
+        transition: all 0.3s ease-in-out;
     }
 
     nav.active {

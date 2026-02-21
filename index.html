@@ -12,27 +12,26 @@
 </head>
 <body>
 
+<!-- Yellow Strip -->
+<div class="yellow-strip"></div>
+
 <!-- Header -->
 <header>
     <div class="header-container">
-        <div style="display: flex; align-items: center; gap: 2rem; flex: 1;">
-            <a class="logo" href="#" style="display: flex; align-items: center; gap: 0.5rem;">
-                <img src="assets/Kitronix.png" alt="Kite H7 Logo" style="height: 70px; width: 70px; object-fit: cover; border-radius: 50%; filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));">
-            </a>
-            <nav id="mainNavIndex">
-                <a href="#overview">Overview</a>
-                <a href="#features">Features</a>
-                <a href="#specs">Specifications</a>
-                <a href="#gallery">Gallery</a>
-                <a href="#support">Support</a>
-                <a href="product.html">Purchase</a>
-            </nav>
-        </div>
-        <div style="display: flex; align-items: center; gap: 0.75rem;">
-            <button class="icon-btn mobile-menu-btn" id="mobileMenuBtnIndex" style="display: none; width: 40px; height: 40px; border: 2px solid var(--tech-border); background: transparent; color: var(--text-charcoal); cursor: pointer; align-items: center; justify-content: center;">
-                <span class="material-symbols-outlined" style="font-size: 20px;">menu</span>
-            </button>
-        </div>
+        <a class="logo" href="#" style="display: flex; align-items: center; gap: 0.5rem;">
+            <img src="assets/Kitronix.png" alt="Kite H7 Logo" style="height: 70px; width: 70px; object-fit: cover; border-radius: 50%; filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));">
+        </a>
+        <nav id="mainNavIndex">
+            <a href="#overview">Overview</a>
+            <a href="#features">Features</a>
+            <a href="#specs">Specifications</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#support">Support</a>
+            <a href="product.html">Purchase</a>
+        </nav>
+        <button class="icon-btn mobile-menu-btn" id="mobileMenuBtnIndex" style="display: none; width: 40px; height: 40px; border: 2px solid var(--tech-border); background: transparent; color: var(--text-charcoal); cursor: pointer; align-items: center; justify-content: center;">
+            <span class="material-symbols-outlined" style="font-size: 20px;">menu</span>
+        </button>
     </div>
 </header>
 
@@ -430,6 +429,57 @@
             icon.textContent = mainNavIndex.classList.contains('active') ? 'close' : 'menu';
         });
     }
+
+    // Close mobile menu when clicking nav links
+    const navLinksIndex = mainNavIndex.querySelectorAll('a');
+    navLinksIndex.forEach(link => {
+        link.addEventListener('click', () => {
+            mainNavIndex.classList.remove('active');
+            const icon = mobileMenuBtnIndex.querySelector('.material-symbols-outlined');
+            icon.textContent = 'menu';
+        });
+    });
+
+    // Mobile navbar scroll behavior
+    let lastScrollTop = 0;
+    const header = document.querySelector('header');
+    const heroSection = document.querySelector('.hero-section');
+
+    function handleScroll() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const heroHeight = heroSection ? heroSection.offsetHeight : 0;
+
+        // Always show navbar in hero section
+        if (scrollTop < heroHeight) {
+            header.classList.add('mobile-visible');
+            return;
+        }
+
+        // Show navbar when scrolling up, hide when scrolling down
+        if (scrollTop > lastScrollTop) {
+            // Scrolling down
+            header.classList.remove('mobile-visible');
+        } else {
+            // Scrolling up
+            header.classList.add('mobile-visible');
+        }
+
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    }
+
+    // Only apply on mobile/tablet
+    function checkMobile() {
+        if (window.innerWidth <= 1024) {
+            window.addEventListener('scroll', handleScroll);
+            handleScroll(); // Initial check
+        } else {
+            window.removeEventListener('scroll', handleScroll);
+            header.classList.remove('mobile-visible');
+        }
+    }
+
+    window.addEventListener('resize', checkMobile);
+    checkMobile(); // Initial check
 </script>
 
 </body>
