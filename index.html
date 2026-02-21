@@ -123,10 +123,6 @@
                         <div class="stat-label">DP-FPU</div>
                     </div>
                     <div class="stat-badge cyan">
-                        <div class="stat-value">M4</div>
-                        <div class="stat-label">SP-FPU</div>
-                    </div>
-                    <div class="stat-badge cyan">
                         <div class="stat-value">2MB</div>
                         <div class="stat-label">Flash</div>
                     </div>
@@ -424,19 +420,25 @@
 
     // ── Hero Carousel ─────────────────────────────────────────────
     (function () {
-        const carousel = document.querySelector('.hero-carousel');
-        const slides   = Array.from(carousel.querySelectorAll('.hero-carousel-slide'));
-        const dots     = Array.from(document.querySelectorAll('.hero-dot'));
-        const prevBtn  = document.getElementById('heroPrev');
-        const nextBtn  = document.getElementById('heroNext');
-        const TOTAL    = slides.length;
-        let current    = 0;
-        let autoTimer  = null;
-        let busy       = false;
+        const carousel  = document.querySelector('.hero-carousel');
+        const slides    = Array.from(carousel.querySelectorAll('.hero-carousel-slide'));
+        const dots      = Array.from(document.querySelectorAll('.hero-dot'));
+        const TOTAL     = slides.length;
+        let current     = 0;
+        let autoTimer   = null;
+        let busy        = false;
+        const isDesktop = () => window.innerWidth > 768;
+
+        // Arrow buttons: remove from DOM on mobile, wire up on desktop
+        const prevBtn = document.getElementById('heroPrev');
+        const nextBtn = document.getElementById('heroNext');
+        if (!isDesktop()) {
+            if (prevBtn) prevBtn.remove();
+            if (nextBtn) nextBtn.remove();
+        }
 
         // Equalize carousel height to the tallest slide
         function equalizeHeight() {
-            // Temporarily un-stack all slides to measure natural height
             slides.forEach(s => {
                 s.style.transition  = 'none';
                 s.style.position    = 'static';
@@ -447,7 +449,6 @@
             let maxH = 0;
             slides.forEach(s => { maxH = Math.max(maxH, s.offsetHeight); });
             carousel.style.minHeight = maxH + 'px';
-            // Re-stack: slide 0 visible, rest off-screen right
             slides.forEach((s, i) => {
                 s.style.position   = 'absolute';
                 s.style.top        = '0';
@@ -474,8 +475,8 @@
             dots.forEach((d, i) => d.classList.toggle('active', i === idx));
         }
 
-        // dir: +1 = new slide comes from RIGHT (forward, left-to-right motion of content)
-        //      -1 = new slide comes from LEFT  (backward / last-to-first wrap)
+        // dir: +1 = incoming slide comes from right (forward)
+        //      -1 = incoming slide comes from left (backward)
         function goTo(newIdx, dir) {
             if (busy || newIdx === current) return;
             busy = true;
@@ -483,13 +484,11 @@
             const outSlide = slides[current];
             const inSlide  = slides[newIdx];
 
-            // Park incoming off-screen in the correct direction
             inSlide.style.transition = 'none';
             inSlide.style.zIndex     = '2';
             inSlide.style.transform  = dir > 0 ? 'translateX(100%)' : 'translateX(-100%)';
 
-            // Force reflow before animating
-            inSlide.getBoundingClientRect();
+            inSlide.getBoundingClientRect(); // force reflow
 
             const dur = '0.65s';
             inSlide.style.transition  = `transform ${dur} cubic-bezier(0.4,0,0.2,1)`;
@@ -500,7 +499,6 @@
 
             setTimeout(() => {
                 outSlide.style.transition = 'none';
-                // Park outgoing off-screen opposite to travel direction
                 outSlide.style.transform  = dir > 0 ? 'translateX(100%)' : 'translateX(-100%)';
                 outSlide.style.zIndex     = '0';
                 inSlide.style.zIndex      = '1';
@@ -511,15 +509,11 @@
         }
 
         function next() {
-            if (current === TOTAL - 1) {
-                goTo(0, +1); // Last → First: same direction as forward (right-to-left)
-            } else {
-                goTo(current + 1, +1);
-            }
+            goTo(current === TOTAL - 1 ? 0 : current + 1, +1);
         }
 
         function prev() {
-            goTo((current - 1 + TOTAL) % TOTAL, -1); // Always backward: prev slide in from left
+            goTo((current - 1 + TOTAL) % TOTAL, -1);
         }
 
         function startAuto() {
@@ -527,12 +521,18 @@
             autoTimer = setInterval(next, 3000);
         }
 
-        nextBtn.addEventListener('click', () => { next(); startAuto(); });
-        prevBtn.addEventListener('click', () => { prev(); startAuto(); });
+        // Arrow buttons — desktop only
+        if (isDesktop()) {
+            nextBtn.addEventListener('click', () => { next(); startAuto(); });
+            prevBtn.addEventListener('click', () => { prev(); startAuto(); });
+            carousel.addEventListener('mouseenter', () => clearInterval(autoTimer));
+            carousel.addEventListener('mouseleave', startAuto);
+        }
+
+        // Dot navigation
         dots.forEach(d => d.addEventListener('click', () => {
             const idx = +d.dataset.index;
-            const dir = idx > current ? +1 : -1;
-            goTo(idx, dir);
+            goTo(idx, idx > current ? +1 : -1);
             startAuto();
         }));
 
@@ -551,20 +551,8 @@
             if (Math.abs(diff) > 50) { diff > 0 ? next() : prev(); startAuto(); }
         });
 
-        // Pause auto-play while hovering
-        carousel.addEventListener('mouseenter', () => clearInterval(autoTimer));
-        carousel.addEventListener('mouseleave', startAuto);
-
         startAuto();
     })();
-
-    // Remove arrow buttons on mobile
-    if (window.innerWidth <= 768) {
-        const prevBtn = document.getElementById('heroPrev');
-        const nextBtn = document.getElementById('heroNext');
-        if (prevBtn) prevBtn.remove();
-        if (nextBtn) nextBtn.remove();
-    }
 </script>
 
 </body>
